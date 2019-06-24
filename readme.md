@@ -1,0 +1,1 @@
+Simple connection to Studio Ghibli API
