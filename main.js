@@ -1,7 +1,9 @@
 'use strict';
 
+// ---------- handle API requests ------------
+
 // gets data from API endpoint and returns an array of objects
-function handleRestRequest(endpoint) {
+function ghibliApiPromise(endpoint) {
   return new Promise(function (resolve, reject) {
     // create a request, assign a new XMLHttpRequest object to it
     let request = new XMLHttpRequest();
@@ -13,13 +15,9 @@ function handleRestRequest(endpoint) {
     request.onload = function () {
       if (this.readyState === 4) {
         if (request.status === 200) {
-          // let dataList = JSON.parse(this.response);
-          //console.log(dataList);
-          //return dataList;
           resolve(request.response);
 
         } else {
-          // console.error(request.statusText);
           reject(request.response);
         }
       }
@@ -38,18 +36,21 @@ function handleRestRequest(endpoint) {
 
 function handleGhibliDataType() {
   $('#js-data-films').on('click', () => {
-    console.log('js-films');
-    // set h2
+
+    // set h2 Data to current data type displayed
     $('.js-ghibli-data-type').text('Films');
 
-    // get objects list of films, call handleRestRequest()
-    handleRestRequest('films').then(JSON.parse).then(function(response){
-      console.log('Success!', response);
-    }, function(error){
+
+    // get object list of films, call a promise using  Promises and .then
+    ghibliApiPromise('films').then(JSON.parse).then(function (response) {
+      console.log('Success!');
+      // handleDisplayFilms()
+      handleDisplayFilms(response);
+    }, function (error) {
       console.error('Failed!', error);
     });
-    // call handleFilmDisplay()
-    
+
+
   });
 
   $('#js-data-species-cat').on('click', () => {
@@ -60,6 +61,31 @@ function handleGhibliDataType() {
     console.log('js-people');
   });
 }
+
+// ---------- handle display items ------------
+function displayItems(htmlContent){
+  $('#js-content').append(htmlContent);
+}
+
+function handleDisplayFilms(filmsList){
+  let html;
+  for(const index in filmsList){
+    html += `<section class="content">
+    <h2>${filmsList[index].title}</h2>
+    <article>this is a movie all about how my life
+      got flipped turned upsidown and if i something somethin
+      just sit right there and let me tell you all the story
+      about how i became the king of belaire.
+    </article>
+  </section>`;
+  }
+
+  displayItems(html);
+
+}
+
+
+// ---------- handle Navigation Bar ------------
 
 function handleNavBar() {
   $('#js-navbar-toggle').on('click', function () {
