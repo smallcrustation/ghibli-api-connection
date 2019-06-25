@@ -16,7 +16,6 @@ function ghibliApiPromise(endpoint) {
       if (this.readyState === 4) {
         if (request.status === 200) {
           resolve(request.response);
-
         } else {
           reject(request.response);
         }
@@ -40,7 +39,6 @@ function handleGhibliDataType() {
     // set h2 Data to current data type displayed
     $('.js-ghibli-data-type').text('Films');
 
-
     // get object list of films, call a promise using  Promises and .then
     ghibliApiPromise('films').then(JSON.parse).then(function (response) {
       console.log('Success!');
@@ -49,8 +47,6 @@ function handleGhibliDataType() {
     }, function (error) {
       console.error('Failed!', error);
     });
-
-
   });
 
   $('#js-data-species-cat').on('click', () => {
@@ -72,16 +68,12 @@ function handleDisplayFilms(filmsList){
   for(const index in filmsList){
     html += `<section class="content">
     <h2>${filmsList[index].title}</h2>
-    <article>this is a movie all about how my life
-      got flipped turned upsidown and if i something somethin
-      just sit right there and let me tell you all the story
-      about how i became the king of belaire.
+    <article>${filmsList[index].description}
     </article>
   </section>`;
   }
-
+  console.log(html);
   displayItems(html);
-
 }
 
 
