@@ -44,6 +44,7 @@ function handleGhibliDataType() {
       console.log('Success!');
       // handleDisplayFilms()
       handleDisplayFilms(response);
+
     }, function (error) {
       console.error('Failed!', error);
     });
@@ -59,21 +60,24 @@ function handleGhibliDataType() {
 }
 
 // ---------- handle display items ------------
-function displayItems(htmlContent){
+function displayItems(htmlContent) {
   $('#js-content').append(htmlContent);
 }
 
-function handleDisplayFilms(filmsList){
-  let html;
-  for(const index in filmsList){
-    html += `<section class="content">
-    <h2>${filmsList[index].title}</h2>
-    <article>${filmsList[index].description}
-    </article>
-  </section>`;
+function handleDisplayFilms(filmsList) {
+  console.log(filmsList);
+  if (filmsList.length > 0) {
+    let html = ''; //
+    filmsList.forEach(film => {
+      html += `<section class="content">
+      <h2>${film.title}</h2>
+      <article>${film.description}
+      </article>
+    </section>`;
+    });
+
+    displayItems(html);
   }
-  console.log(html);
-  displayItems(html);
 }
 
 
