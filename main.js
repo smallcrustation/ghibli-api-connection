@@ -33,7 +33,8 @@ function ghibliApiPromise(endpoint) {
   });
 }
 
-function handleGhibliDataType() {
+function handleMenuSelection() {
+
   $('#js-data-films').on('click', () => {
 
     // set h2 Data to current data type displayed
@@ -59,15 +60,29 @@ function handleGhibliDataType() {
   });
 }
 
+// for running on window load (display films as default)
+window.onload = function () {
+  // set h2 Data to current data type displayed
+  $('.js-ghibli-data-type').text('Films');
+  // get object list of films, call a promise using  Promises and .then
+  ghibliApiPromise('films').then(JSON.parse).then(function (response) {
+    console.log('Success!');
+    // handleDisplayFilms()
+    handleDisplayFilms(response);
+
+  }, function (error) {
+    console.error('Failed!', error);
+  });
+};
+
 // ---------- handle display items ------------
 function displayItems(htmlContent) {
   $('#js-content').append(htmlContent);
 }
 
 function handleDisplayFilms(filmsList) {
-  console.log(filmsList);
   if (filmsList.length > 0) {
-    let html = ''; //
+    let html = ''; // need '' b/c synchronous will return undefined then you data otherwise
     filmsList.forEach(film => {
       html += `<section class="content">
       <h2>${film.title}</h2>
@@ -92,7 +107,7 @@ function handleNavBar() {
 function handleApp() {
   // handleRestRequest();
   handleNavBar();
-  handleGhibliDataType();
+  handleMenuSelection();
 }
 
 $(handleApp());
