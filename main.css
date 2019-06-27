@@ -1,150 +1,190 @@
- /* html * {
-   border: 1px solid orangered;
-   box-sizing: border-box;
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+header {
+  text-align: center;
+  display: inline-block;
+}
+
+header img {
+  position: relative;
+  max-width: 500px;
+  width: 50%;
+}
+
+nav {
+  width: 80%;
+  margin: 0 auto;
+}
+
+nav ul {
+  text-align: center;
+}
+
+nav li {
+  border: 1px solid black;
+  text-align: center;
+}
+
+nav a {
+  display: block;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  transition: .5s;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  display: block;
+  padding: inherit;
+}
+
+h2 {
+  font-size: 3em;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h2 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: .5rem;
+}
+
+.navbar-toggle {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.main-nav {
+  display: none;
+}
+
+/* .active {
+   display: block;
  } */
 
- body {
-   font-family: 'Josefin Sans', sans-serif;
- }
+.card h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  background-color: black;
+}
 
- header {
-   /* width: 100%; */
-   text-align: center;
-   display: inline-block;
- }
+.card article {
+  font-size: 1em;
+  margin: .5rem;
+}
 
- header img {
-   position: relative;
-   max-width: 500px;
-   width: 50%;
- }
+.card {
+  border: 1px solid black;
+  border-color: inherit;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: .5rem;
+  align-self: stretch;  /* this makes card box's all the same size on each row */
+}
 
- nav {
-   width: 80%;
-   margin: 0 auto;
- }
+.hidden{
+  display: none;
+}
 
- nav ul {
-   text-align: center;
- }
+@media screen and (min-width: 600px) {
+  header {
+    width: 100%;
+  }
+  .card {
+    /* flex: 1 1 calc(50% - 2rem); */
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: calc(50% - 1.2rem);
+  }
+  .card h2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .card article {
+    margin: 1.5rem;
+  }
+  .navbar-toggle {
+    display: none;
+  }
+  .main-nav {
+    /* display: block; */
+    display: flex !important;
+    /* ! so css overrides the js toggle */
+    justify-content: space-evenly;
+  }
+  .main-nav li {
+    background-color: white;
+    display: inline-block;
+  }
+}
 
- nav li {
-   border: 1px solid black;
-   text-align: center;
- }
+@media screen and (min-width: 800px) {
+  .card {
+    flex: 1 1 calc(33% - 1.2rem);
+  }
+}
 
- nav a {
-   display: block;
-   padding-left: 2rem;
-   padding-right: 2rem;
-   padding-top: 1rem;
-   padding-bottom: 1rem;
- }
+/* Colors - spirited med */
 
- a {
-   text-decoration: none;
-   color: black;
-   cursor: pointer;
-   display: block;
-   padding: inherit;
- }
+/* - '#1F272E' 
+- '#353832'
+- '#853438'
+- '#908091'
+- '#61BAE5'
+- '#C4AE99'
+- '#B5D9F0' */
 
- h2 {
-   font-size: 3em;
-   padding: 10px;
-   padding-bottom: 0px;
- }
+/* Colors - Ponyo med */
+/* - '#4D4140'
+- '#596F7E'
+- '#168B98'
+- '#ED5B67'
+- '#E27766'
+- '#DAAD50'
+- '#EAC3A6' */
 
- section {
-   max-width: 1200px;
-   margin: 0 auto;
- }
+/* .card:nth-child(1n) h2 {
+  background-color: #EAC3A6;
+}
 
- section h2 {
-   text-align: center;
- }
+.card:nth-child(2n) h2 {
+  background-color: #DAAD50;
+}
 
- .container {
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   margin: .5rem;
- }
+.card:nth-child(3n) h2 {
+  background-color: #E27766;
+}
 
- .navbar-toggle {
-   position: absolute;
-   right: 20px;
-   top: 10px;
-   cursor: pointer;
- }
+.card:nth-child(4n) h2 {
+  background-color: #ED5B67;
+}
 
- .main-nav {
-   display: none;
- }
+.card:nth-child(5n) h2 {
+  background-color: #168B98;
+}
 
- .active {
-   display: block;
- }
-
- .content h2 {
-   font-size: 1.5em;
-   font-weight: bold;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   color: white;
-   background-color: black;
- }
-
- .content article {
-   font-size: 1em;
-   margin: .5rem;
- }
-
- .content {
-   border: 1px solid black;
-   border-radius: 5px;
-   margin: .5rem;
-   align-self: stretch;
-   /* this makes content box's all the same size on each row */
- }
-
- @media screen and (min-width: 600px) {
-   header {
-     width: 100%;
-   }
-   .content {
-     /* flex: 1 1 calc(50% - 2rem); */
-     flex-grow: 1;
-     flex-shrink: 0;
-     flex-basis: calc(50% - 1.2rem);
-   }
-   .content h2 {
-     padding-top: 15px;
-     padding-bottom: 15px;
-   }
-   .content article {
-     margin: 1.5rem;
-   }
-   .navbar-toggle {
-     display: none;
-   }
-   .main-nav {
-     display: flex;
-     top: 0;
-     justify-content: space-evenly;
-   }
-   .main-nav li {
-     background-color: white;
-     display: inline-block;
-     /* padding-left: 2rem;
-     padding-right: 2rem;
-     padding-top: 1rem;
-     padding-bottom: 1rem; */
-   }
- }
-
- @media screen and (min-width: 800px) {
-   .content {
-     flex: 1 1 calc(33% - 1.2rem);
-   }
- }
+.card:nth-child(6n) h2 {
+  background-color: #596F7E;
+}  */

@@ -22,26 +22,32 @@
   </header>
 
   <nav class="">
-      <span class="navbar-toggle" id="js-navbar-toggle">
-        <i class="fas fa-bars"></i>
-      </span>
-      <ul class="main-nav">
-        <li><a id='js-data-films' href="#">Films</a></li>
-        <li><a id='js-data-species-cat' href="#">Cats</a></li>
-        <li><a id='js-data-species-people' href="#">People</a></li>
-      </ul>
-    </nav>
+    <span class="navbar-toggle" id="js-navbar-toggle">
+      <i class="fas fa-bars"></i>
+    </span>
+    <ul class="main-nav">
+      <li><a id='js-data-films' href="#">Films</a></li>
+      <li><a id='js-data-species-cat' href="#">Cats</a></li>
+      <li><a id='js-data-species-people' href="#">People</a></li>
+    </ul>
+  </nav>
 
 
   <section>
     <h2 class="js-ghibli-data-type">Pick an Item</h2>
-    <div class="container" id="js-content">
+    <div class="container content" id="js-content">
+      <section class="card hidden">
+        <h2>${film.title}</h2>
+        <article>${film.description}
+        </article>
+      </section>
     </div>
 
   </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="main.js"></script>
+
 </body>
 
 </html>

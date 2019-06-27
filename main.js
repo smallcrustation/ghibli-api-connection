@@ -35,7 +35,10 @@ function ghibliApiPromise(endpoint) {
 
 function handleMenuSelection() {
 
-  $('#js-data-films').on('click', () => {
+  $('#js-data-films').on('click', (e) => {
+
+    // prevent page from scrolling to top
+    e.preventDefault();
 
     // set h2 Data to current data type displayed
     $('.js-ghibli-data-type').text('Films');
@@ -51,11 +54,15 @@ function handleMenuSelection() {
     });
   });
 
-  $('#js-data-species-cat').on('click', () => {
+  $('#js-data-species-cat').on('click', (e) => {
+    // prevent page from scrolling to top
+    e.preventDefault();
     console.log('js-cat');
   });
 
-  $('#js-data-species-people').on('click', () => {
+  $('#js-data-species-people').on('click', (e) => {
+    // prevent page from scrolling to top
+    e.preventDefault();
     console.log('js-people');
   });
 }
@@ -76,22 +83,22 @@ window.onload = function () {
 };
 
 // ---------- handle display items ------------
-function displayItems(htmlContent) {
-  $('#js-content').append(htmlContent);
-}
 
 function handleDisplayFilms(filmsList) {
   if (filmsList.length > 0) {
     let html = ''; // need '' b/c synchronous will return undefined then you data otherwise
     filmsList.forEach(film => {
-      html += `<section class="content">
-      <h2>${film.title}</h2>
+      let color = getRandomColor();
+      html += `<section class="card" style="border-color:${color};">
+      <h2 style="background-color:${color};">${film.title}</h2>
       <article>${film.description}
       </article>
     </section>`;
     });
 
-    displayItems(html);
+    $('#js-content').append(html);
+
+    
   }
 }
 
@@ -100,14 +107,38 @@ function handleDisplayFilms(filmsList) {
 
 function handleNavBar() {
   $('#js-navbar-toggle').on('click', function () {
-    $('.main-nav').toggle('.active').animate();
+    $('.main-nav').slideToggle();
   });
 }
 
+function handleNavHover() {
+  $('.main-nav a').hover(function () {
+    let color = getRandomColor();
+    $(this).css('background-color', color);
+  }, function () {
+    $(this).css('background-color', 'white');
+  });
+}
+
+// ---------- handle Other Styling/Animation ------------
+function getRandomColor() {
+  const colors = ['#4D4140', '#596F7E', '#168B98', '#ED5B67', '#E27766',
+    '#DAAD50', '#EAC3A6', '#272020', '#2D3840', '#0E464C', '#762D34', '#703C33', '#6D5826', '#766255'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// function styleCardColor() {
+//   let color = getRandomColor();
+//   $('.card').css('border-color', color);
+//   $('.card h2').css('background-color', color);
+// }
+
+// --------- Handle the App -----------------
+
 function handleApp() {
-  // handleRestRequest();
   handleNavBar();
   handleMenuSelection();
+  handleNavHover();
 }
 
 $(handleApp());
