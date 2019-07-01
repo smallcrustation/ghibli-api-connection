@@ -101,7 +101,8 @@ section h2 {
   overflow: hidden;
   border-radius: 5px;
   margin: .5rem;
-  align-self: stretch;  /* this makes card box's all the same size on each row */
+  align-self: stretch;  /* this makes card box's all the same height on each row */
+  width: 100%;
 }
 
 .hidden{
